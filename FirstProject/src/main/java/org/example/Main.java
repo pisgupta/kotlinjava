@@ -40,7 +40,7 @@ public class Main {
         System.out.println(m.add(10,23));
         System.out.println(m.sub(10,23));
         System.out.println(m.mul(10,23));
-        System.out.println(m.div(10,23));
+        System.out.println(m.div(10,0));
         System.out.println(m.root(55));
     }
 }
