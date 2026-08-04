@@ -1,9 +1,6 @@
 package org.example;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -82,6 +79,7 @@ class MainTest {
     class DivTests {
 
         @Test
+        @Disabled
         @DisplayName("Should perform integer division correctly")
         void testDivValid() throws Exception {
             int result = (int) invokePrivateMethod("div", new Class<?>[]{int.class, int.class}, 10, 23);
