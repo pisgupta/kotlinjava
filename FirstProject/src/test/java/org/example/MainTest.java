@@ -86,6 +86,8 @@ class MainTest {
         void testDivValid() throws Exception {
             int result = (int) invokePrivateMethod("div", new Class<?>[]{int.class, int.class}, 10, 23);
             assertEquals(0, result); // 10 / 23 = 0 in integer arithmetic
+            int divResult = (int) invokePrivateMethod("div", new Class<?>[]{int.class, int.class}, 10, 2);
+            assertEquals(0,divResult);
         }
 
         @Test

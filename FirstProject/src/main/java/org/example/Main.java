@@ -6,6 +6,7 @@ import java.util.Arrays;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
 
+
     private int add(int i , int j){
         return i+j;
     }
@@ -13,9 +14,11 @@ public class Main {
     private int sub(int i , int j){
         return i-j;
     }
+
     private int mul(int i , int j){
         return i*j;
     }
+
     private int div(int i , int j){
         return i/j;
     }
@@ -40,7 +43,7 @@ public class Main {
         System.out.println(m.add(10,23));
         System.out.println(m.sub(10,23));
         System.out.println(m.mul(10,23));
-        System.out.println(m.div(10,0));
+        System.out.println(m.div(10,10));
         System.out.println(m.root(55));
     }
 }
