@@ -79,7 +79,6 @@ class MainTest {
     class DivTests {
 
         @Test
-        @Disabled
         @DisplayName("Should perform integer division correctly")
         void testDivValid() throws Exception {
             int result = (int) invokePrivateMethod("div", new Class<?>[]{int.class, int.class}, 10, 23);

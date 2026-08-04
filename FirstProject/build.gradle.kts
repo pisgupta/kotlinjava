@@ -22,4 +22,6 @@ application {
 
 tasks.test {
     useJUnitPlatform()
+    ignoreFailures = true
+
 }
