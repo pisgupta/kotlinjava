@@ -45,5 +45,7 @@ public class Main {
         System.out.println(m.mul(10,23));
         System.out.println(m.div(10,10));
         System.out.println(m.root(55));
+
+        System.out.println("Testing auto build generate");
     }
 }
