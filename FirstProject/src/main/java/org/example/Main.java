@@ -25,6 +25,16 @@ public class Main {
         return i*i;
     }
 
+    public boolean isNumberIsPrime(int num){
+        boolean flag = true;
+        for (int i=2 ; i<num;i++){
+            if (num%2==0){
+                flag=false;
+            }
+        }
+        return flag;
+    }
+
 
     public static void main(String[] args) {
         //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
@@ -43,7 +53,6 @@ public class Main {
         System.out.println(m.mul(10,23));
         System.out.println(m.div(10,10));
         System.out.println(m.root(55));
-
-
+        System.out.println(m.isNumberIsPrime(11));
     }
 }
