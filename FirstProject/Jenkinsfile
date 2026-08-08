@@ -1,0 +1,49 @@
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Build') {
+            steps {
+                echo 'Starting Gradle build...'
+
+                sh '''
+                    chmod +x gradlew
+
+                    docker run --rm \
+                        -v "$WORKSPACE/FirstProject":/workspace \
+                        -w /workspace \
+                        android-build:latest \
+                        ./gradlew clean build
+                '''
+            }
+        }
+
+        stage('Test Results') {
+            steps {
+                junit 'FirstProject/build/test-results/test/*.xml'
+            }
+        }
+
+        stage('Archive JAR') {
+            steps {
+                archiveArtifacts artifacts: 'FirstProject/build/libs/*.jar',
+                                 fingerprint: true
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Build completed successfully!'
+        }
+
+        failure {
+            echo 'Build failed!'
+        }
+
+        always {
+            echo 'Pipeline execution completed.'
+        }
+    }
+}
