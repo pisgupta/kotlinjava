@@ -1,3 +1,4 @@
+```groovy
 pipeline {
     agent any
 
@@ -7,15 +8,23 @@ pipeline {
             steps {
                 echo 'Starting Gradle build...'
 
-                sh '''
-                    chmod +x gradlew
+                dir('FirstProject') {
+                    sh '''
+                        echo "Current directory:"
+                        pwd
 
-                    docker run --rm \
-                        -v "$WORKSPACE/FirstProject":/workspace \
-                        -w /workspace \
-                        android-build:latest \
-                        ./gradlew clean build
-                '''
+                        echo "Project files:"
+                        ls -la
+
+                        chmod +x gradlew
+
+                        docker run --rm \
+                            -v "$(pwd)":/workspace \
+                            -w /workspace \
+                            android-build:latest \
+                            ./gradlew clean build
+                    '''
+                }
             }
         }
 
@@ -47,3 +56,4 @@ pipeline {
         }
     }
 }
+```
