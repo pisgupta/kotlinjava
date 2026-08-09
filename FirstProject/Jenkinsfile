@@ -23,12 +23,17 @@ pipeline {
                             -e GRADLE_USER_HOME=/home/gradle/.gradle \
                             -w /workspace \
                             android-build:latest \
-                            ./gradlew clean test jacocoTestReport
+                            ./gradlew clean build jacocoTestReport
                     '''
                 }
             }
         }
 
+         stage('Check Artifacts') {
+            steps {
+                sh 'ls -lah FirstProject/build/libs/'
+                   }
+        }
         stage('Archive JAR') {
             steps {
                 archiveArtifacts artifacts: 'FirstProject/build/libs/*.jar',
