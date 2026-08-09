@@ -40,7 +40,7 @@ pipeline {
     post {
 
         always {
-            echo 'Publishing test and coverage reports...'
+            echo 'Publishing JUnit and JaCoCo reports...'
 
             junit 'FirstProject/build/test-results/test/*.xml'
 
