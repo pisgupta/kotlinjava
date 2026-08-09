@@ -19,6 +19,8 @@ pipeline {
 
                         docker run --rm \
                             -v "$(pwd)":/workspace \
+                            -v /var/lib/jenkins/.gradle:/home/gradle/.gradle \
+                            -e GRADLE_USER_HOME=/home/gradle/.gradle \
                             -w /workspace \
                             android-build:latest \
                             ./gradlew clean build
