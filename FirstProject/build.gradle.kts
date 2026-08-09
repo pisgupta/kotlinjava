@@ -1,5 +1,6 @@
 plugins {
     id("java")
+    id("jacoco")
     id("application")
 }
 
@@ -23,5 +24,13 @@ application {
 tasks.test {
     useJUnitPlatform()
     ignoreFailures = true
-
+    finalizedBy(tasks.jacocoTestReport)
 }
+
+tasks.jacocoTestReport {
+    dependsOn(tasks.test)
+    reports { xml.required.set(true)
+        html.required.set(true)
+        csv.required.set(false) }
+}
+

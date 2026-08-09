@@ -5,7 +5,7 @@ pipeline {
 
         stage('Build') {
             steps {
-                echo 'Starting Gradle build...'
+                echo 'Starting Gradle build and JaCoCo coverage...'
 
                 dir('FirstProject') {
                     sh '''
@@ -23,15 +23,9 @@ pipeline {
                             -e GRADLE_USER_HOME=/home/gradle/.gradle \
                             -w /workspace \
                             android-build:latest \
-                            ./gradlew clean build
+                            ./gradlew clean test jacocoTestReport
                     '''
                 }
-            }
-        }
-
-        stage('Test Results') {
-            steps {
-                junit 'FirstProject/build/test-results/test/*.xml'
             }
         }
 
@@ -44,16 +38,27 @@ pipeline {
     }
 
     post {
+
+        always {
+            echo 'Publishing test and coverage reports...'
+
+            junit 'FirstProject/build/test-results/test/*.xml'
+
+            jacoco(
+                execPattern: 'FirstProject/build/jacoco/test.exec',
+                classPattern: 'FirstProject/build/classes/java/main',
+                sourcePattern: 'FirstProject/src/main/java'
+            )
+
+            echo 'Pipeline execution completed.'
+        }
+
         success {
             echo 'Build completed successfully!'
         }
 
         failure {
             echo 'Build failed!'
-        }
-
-        always {
-            echo 'Pipeline execution completed.'
         }
     }
 }
