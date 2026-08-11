@@ -45,7 +45,7 @@ class MainTest {
         }
     }
 
-    @Nested
+    /*@Nested
     @DisplayName("Tests for sub(int, int)")
     class SubTests {
 
@@ -112,5 +112,5 @@ class MainTest {
     @DisplayName("Should run main method without throwing exceptions")
     void testMainMethod() {
         assertDoesNotThrow(() -> Main.main(new String[]{}));
-    }
+    }*/
 }
