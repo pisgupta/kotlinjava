@@ -23,14 +23,31 @@ application {
 
 tasks.test {
     useJUnitPlatform()
-    ignoreFailures = true
+    //ignoreFailures = true
     finalizedBy(tasks.jacocoTestReport)
 }
 
 tasks.jacocoTestReport {
     dependsOn(tasks.test)
-    reports { xml.required.set(true)
+    reports {
+        xml.required.set(true)
         html.required.set(true)
         csv.required.set(false) }
+}
+
+tasks.jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            limit {
+                counter = "LINE"
+                value = "COVEREDRATIO"
+                minimum = "0.80".toBigDecimal()
+            }
+        }
+    }
+}
+
+tasks.build {
+    dependsOn(tasks.jacocoTestCoverageVerification)
 }
 
